@@ -11,7 +11,7 @@ class Environment:
 
     def step(self):
         for agent in self.agents:
-            agent.move()
+            agent.move(self.plants)
 
     def drawEnvironment(self,screen):
         pygame.draw.rect(screen, "green",(25,25,800,800))

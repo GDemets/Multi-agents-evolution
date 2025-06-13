@@ -10,7 +10,7 @@ class Creature:
         self.stamina=100
         self.targetX,self.targetY=self.x,self.y
 
-    def move(self):
+    def move(self,plants):
 
         if abs(self.targetX-self.x)<1 and abs(self.targetY-self.y)<1 :
             newTarget=False
@@ -18,6 +18,13 @@ class Creature:
                 self.targetX,self.targetY=random.randint(round(self.targetX-50),round(self.x+50)),random.randint(round(self.targetY-50),round(self.y+50))
                 if 25 <= self.targetX <= 800 and 25 <= self.targetY <= 800:
                     newTarget=True
+
+        for plant in plants:
+            distance = math.sqrt((plant.x-self.x)**2 + (plant.y-self.y)**2)
+            if distance<=15:
+                self.targetX,self.targetY=plant.x,plant.y
+            else:
+                continue
 
         dx = self.targetX - self.x
         dy = self.targetY - self.y
